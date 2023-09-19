@@ -2,4 +2,6 @@
     <string name="app_name">AppIMC</string>
     <string name="male">Masculino</string>
     <string name="female">Femenino</string>
+    <string name="height">Altura</string>
+    <string name="defaultHeight">0 cm</string>
 </resources>
