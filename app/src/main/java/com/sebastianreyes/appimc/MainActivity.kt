@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.slider.RangeSlider
 import java.text.DecimalFormat
 
@@ -13,11 +14,20 @@ class MainActivity : AppCompatActivity() {
 
     private var isMaleSelected: Boolean = true
     private var isFemaleSelected: Boolean = false
+    private var currentWeight: Int = 50
+    private var currentAge: Int = 27
 
     private lateinit var viewMale: CardView
     private lateinit var viewFemale: CardView
     private lateinit var tvHeight: TextView
     private lateinit var rsHeight: RangeSlider
+    private lateinit var fabSubstractWeight: FloatingActionButton
+    private lateinit var fabPlusWeight: FloatingActionButton
+    private lateinit var tvPeso: TextView
+    private lateinit var fabSubstractAge: FloatingActionButton
+    private lateinit var fabPlusAge: FloatingActionButton
+    private lateinit var tvEdad: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -31,16 +41,22 @@ class MainActivity : AppCompatActivity() {
         viewFemale = findViewById(R.id.cvFemenino)
         tvHeight = findViewById(R.id.tvHeight)
         rsHeight = findViewById(R.id.rsHeight)
+        fabSubstractWeight = findViewById(R.id.btnSubstractWeight)
+        fabPlusWeight = findViewById(R.id.btnPlusWeight)
+        tvPeso = findViewById(R.id.tvPeso)
+        fabPlusAge = findViewById(R.id.btnPlusAge)
+        fabSubstractAge = findViewById(R.id.btnSubstractAge)
+        tvEdad = findViewById(R.id.tvEdad)
     }
 
     @SuppressLint("SetTextI18n")
     private fun initListeners() {
         viewMale.setOnClickListener {
-            changeGender()
+            changeGenderMale()
             setGenderColor()
         }
         viewFemale.setOnClickListener {
-            changeGender()
+            changeGenderFemale()
             setGenderColor()
         }
         rsHeight.addOnChangeListener { _, value, _ ->
@@ -48,11 +64,40 @@ class MainActivity : AppCompatActivity() {
             val result = df.format(value)
             tvHeight.text = "$result cm"
         }
+        fabSubstractWeight.setOnClickListener {
+            currentWeight--
+            setWeight()
+        }
+        fabPlusWeight.setOnClickListener {
+            currentWeight++
+            setWeight()
+        }
+        fabSubstractAge.setOnClickListener {
+            currentAge--
+            setAge()
+        }
+        fabPlusAge.setOnClickListener {
+            currentAge++
+            setAge()
+        }
     }
 
-    private fun changeGender() {
-        isMaleSelected = !isMaleSelected
-        isFemaleSelected = !isFemaleSelected
+    private fun setAge() {
+        tvEdad.text = currentAge.toString()
+    }
+
+    private fun setWeight() {
+        tvPeso.text = currentWeight.toString()
+    }
+
+    private fun changeGenderMale() {
+        isMaleSelected = true
+        isFemaleSelected = false
+    }
+
+    private fun changeGenderFemale() {
+        isMaleSelected = false
+        isFemaleSelected = true
     }
 
     private fun setGenderColor() {
@@ -61,7 +106,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getBackgroundColor(isSelectedComponent: Boolean): Int {
-        var colorReference = if (isSelectedComponent) {
+        val colorReference = if (isSelectedComponent) {
             R.color.background_component_selected
         } else {
             R.color.background_component
@@ -71,5 +116,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initUI() {
         setGenderColor()
+        setWeight()
+        setAge()
     }
 }

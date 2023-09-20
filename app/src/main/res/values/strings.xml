@@ -2,6 +2,11 @@
     <string name="app_name">AppIMC</string>
     <string name="male">Masculino</string>
     <string name="female">Femenino</string>
-    <string name="height">Altura</string>
-    <string name="defaultHeight">0 cm</string>
+    <string name="height">Altura (cm)</string>
+    <string name="defaultHeight">0</string>
+    <string name="weight">Peso (KG)</string>
+    <string name="Age">Edad (años)</string>
+    <string name="defaultWeight">0</string>
+    <string name="defaultAge">0</string>
+    <string name="calculate">Calcular</string>
 </resources>
