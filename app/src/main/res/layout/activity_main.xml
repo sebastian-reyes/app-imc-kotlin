@@ -115,7 +115,7 @@
                 android:contentDescription="@string/defaultHeight"
                 android:stepSize="1"
                 android:valueFrom="0"
-                android:valueTo="200" />
+                android:valueTo="220"/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -127,7 +127,7 @@
         android:layout_height="150dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
-        app:cardBackgroundColor="@color/background_component_selected"
+        app:cardBackgroundColor="@color/background_component"
         app:cardCornerRadius="16dp"
         app:layout_constraintEnd_toStartOf="@id/cvEdad"
         app:layout_constraintStart_toStartOf="parent"
@@ -192,7 +192,7 @@
         android:layout_width="0dp"
         android:layout_height="150dp"
         android:layout_marginTop="32dp"
-        app:cardBackgroundColor="@color/background_component_selected"
+        app:cardBackgroundColor="@color/background_component"
         app:cardCornerRadius="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/cvPeso"
@@ -256,15 +256,14 @@
         android:id="@+id/btnCalcular"
         android:layout_width="0dp"
         android:layout_height="80dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:backgroundTint="@color/background_fab"
         android:text="@string/calculate"
         android:textAllCaps="true"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/cvPeso"
-        android:backgroundTint="@color/background_fab"
-        />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cvPeso" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

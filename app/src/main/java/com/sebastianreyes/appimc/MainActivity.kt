@@ -1,6 +1,7 @@
 package com.sebastianreyes.appimc
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -30,6 +31,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var fabPlusAge: FloatingActionButton
     private lateinit var tvEdad: TextView
     private lateinit var btnCalcular: Button
+
+    companion object{
+        const val IMC_KEY = "IMC_RESULTADO"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,14 +90,21 @@ class MainActivity : AppCompatActivity() {
             setAge()
         }
         btnCalcular.setOnClickListener {
-            calcularIMC()
+            val resultado = calcularIMC()
+            navigateToResult(resultado)
         }
     }
 
-    private fun calcularIMC() {
+    private fun navigateToResult(resultado: Double) {
+        val intentResultado = Intent(this, ResultActivity::class.java)
+        intentResultado.putExtra(IMC_KEY, resultado)
+        startActivity(intentResultado)
+    }
+
+    private fun calcularIMC(): Double {
         val df = DecimalFormat("#.##")
-        val imc = currentWeight / (currentHeight.toDouble()/100 * currentHeight.toDouble()/100)
-        val result = df.format(imc).toDouble()
+        val imc = currentWeight / (currentHeight.toDouble() / 100 * currentHeight.toDouble() / 100)
+        return df.format(imc).toDouble()
     }
 
     private fun setAge() {
